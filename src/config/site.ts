@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Enlace Inteligente",
-  url: "https://efrain26.github.io/smart-links/",
+  url: "https://enlaceinteligente.app/",
   lang: "es",
   locale: "es_MX",
   author: "Enlace Inteligente",

@@ -6,8 +6,7 @@ import icon from "astro-icon";
 import remarkReadingTime from "remark-reading-time";
 
 export default defineConfig({
-  site: "https://efrain26.github.io",
-  base: "/smart-links/",
+  site: "https://enlaceinteligente.app",
   integrations: [sitemap(), icon(), mdx()],
   markdown: {
     remarkPlugins: [
