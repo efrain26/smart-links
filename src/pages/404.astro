@@ -1,26 +1,24 @@
 ---
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import Button from "@/components/ui/Button.astro";
+import { useTranslations } from "@/i18n/ui";
 
-const metadata = {
-  title: "404 — Página no encontrada",
-  description: "La página que buscas no existe.",
-};
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<LandingLayout title={metadata.title} description={metadata.description}>
+<LandingLayout title={t.notFound.title} description={t.notFound.description}>
   <section
     class="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center"
   >
     <p class="text-8xl font-extrabold tracking-tighter text-primary">404</p>
     <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-      No encontramos esa página
+      {t.notFound.heading}
     </h1>
     <p class="mt-4 max-w-md text-muted-foreground">
-      Puede que haya sido movida o ya no exista.
+      {t.notFound.body}
     </p>
     <Button href="/" variant="primary" size="lg" class="mt-8">
-      Volver al inicio
+      {t.notFound.back}
     </Button>
   </section>
 </LandingLayout>

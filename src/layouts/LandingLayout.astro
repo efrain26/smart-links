@@ -8,12 +8,14 @@ interface Props {
 import Seo from "@/components/seo/Seo.astro";
 import "@/styles/global.css";
 import Analytics from "@vercel/analytics/astro";
+import { useTranslations } from "@/i18n/ui";
 
 const { title, description, canonical } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <!doctype html>
-<html lang="es" data-theme="light" class="scroll-smooth">
+<html lang={t.lang} data-theme="light" class="scroll-smooth">
   <head>
     <Seo {title} {description} {canonical} />
     <slot name="head" />

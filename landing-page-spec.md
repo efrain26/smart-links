@@ -15,7 +15,7 @@
 ## 2. Stack y límites
 
 - **Framework:** Astro (usar el template que ya existe del usuario).
-- **Idioma:** español (español latino). La versión en inglés queda fuera de este alcance.
+- **Idioma:** español (español latino) como idioma principal y por defecto (`/`), con versión en inglés (`/en/`) para no descartar público internacional. Selector de idioma en el header.
 - **Estilo:** limpio, una sola página, minimalista. Sin animaciones pesadas ni frameworks de UI que no vengan en el template.
 - **Sin backend propio:** la captura de email y la encuesta usan servicios externos gratuitos (ver sección 7). No se construye API ni base de datos en esta fase.
 - **Tiempo objetivo:** horas, no semanas.
@@ -55,7 +55,7 @@ Diferencial (tomado de la investigación, sección 9):
 
 ## 5. Estructura de la página (secciones, en orden)
 
-1. **Hero** — headline (variable de nombre) + subheadline + campo de email + CTA. Sin nav.
+1. **Hero** — headline (variable de nombre) + subheadline + campo de email + CTA. Sin nav (solo el selector de idioma).
 2. **Dolor / Problema** — "Tu campaña funciona, pero el link no abre la app": mención del problema real (email/SMS/ads que mandan al navegador en vez de a la app).
 3. **Cómo funciona** — 3 pasos: (1) crea tu enlace, (2) pégalo en tu campaña, (3) detectamos el dispositivo y redirigimos a la tienda o app correcta.
 4. **Diferenciadores** — los 3 bullets de la sección 4 (sin SDK / MXN / para marketers).
@@ -64,6 +64,14 @@ Diferencial (tomado de la investigación, sección 9):
 7. **CTA final** — repetir captura de email: "Notifícame cuando salga" + bullet de "sin spam, una notificación cuando esté listo".
 
 **Sin sección de precios** en esta fase (el precio se testea en la encuesta, no en la página). **Sin footer grande** ni enlaces a redes: máximo un enlace legal/privacidad y contacto.
+
+### Internacionalización (i18n)
+
+- Rutas por idioma con el i18n nativo de Astro: **`/` = español** (idioma por defecto, sin prefijo) y **`/en/` = inglés**.
+- Selector de idioma en el header (ES/EN); cada página muestra el enlace al otro idioma.
+- Todo el copy vive en diccionarios en `src/i18n/ui.ts` (un objeto por idioma, mismo tipo). El nombre y la config del producto siguen centralizados en `src/config/site.ts`.
+- `Astro.currentLocale` + `useTranslations()` resuelven el texto por página; `Seo.astro` emite `hreflang` (`es`, `en`, `x-default`) y `og:locale` según el idioma.
+- El español es el idioma de medición principal (métrica de conversión). El inglés se mantiene como versión secundaria: mismo formulario y misma encuesta.
 
 ## 6. Flujo de captura y encuesta
 
@@ -137,7 +145,8 @@ Con eso se calcula la **tasa de conversión** que alimenta el umbral del skill (
 - [ ] Auto-responder de email de confirmación con las 2 preguntas abiertas.
 - [ ] Eventos `page_view`, `cta_click`, `form_submit` implementados y verificables.
 - [ ] Texto SEO (title + meta) aplicado con los términos de la sección 8.
-- [ ] Copy en español latino, sin prometer dominios personalizados ni deep linking avanzado.
+- [ ] Copy en español latino (idioma por defecto) y versión en inglés en `/en/`, sin prometer dominios personalizados ni deep linking avanzado.
+- [ ] Selector de idioma ES/EN funcional en el header, con `hreflang` y `og:locale` por idioma.
 - [ ] Se puede desplegar con 1 comando (`astro build` + deploy en Vercel/Cloudflare, gratis).
 
 ## 11. Fuera de alcance (explicitamente NO)
@@ -146,7 +155,8 @@ Con eso se calcula la **tasa de conversión** que alimenta el umbral del skill (
 - Página de precios, checkout o cobro.
 - Dominios personalizados (fase avanzada).
 - Deferred deep linking / fingerprinting.
-- Inglés, i18n, dark mode, blog, docs.
+- Más idiomas además de es/en (extensible desde `src/i18n/ui.ts`).
+- Dark mode, blog, docs.
 - Marketing pesado: sin pop-ups, sin chatbots, sin animaciones de scroll.
 
 ---

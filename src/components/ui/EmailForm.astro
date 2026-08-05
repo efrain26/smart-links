@@ -1,17 +1,26 @@
 ---
 import { siteConfig } from "@/config/site";
+import { useTranslations } from "@/i18n/ui";
 import Button from "./Button.astro";
 
 interface Props {
   id: string;
   buttonText?: string;
   successMessage?: string;
+  emailLabel?: string;
+  emailPlaceholder?: string;
+  invalidEmail?: string;
 }
+
+const t = useTranslations(Astro.currentLocale);
 
 const {
   id,
-  buttonText = siteConfig.cta,
-  successMessage = siteConfig.capture.successMessage,
+  buttonText = t.form.cta,
+  successMessage = t.form.successMessage,
+  emailLabel = t.form.emailLabel,
+  emailPlaceholder = t.form.emailPlaceholder,
+  invalidEmail = t.form.invalidEmail,
 } = Astro.props;
 ---
 
@@ -23,17 +32,18 @@ const {
   class="flex w-full flex-col gap-3 sm:flex-row"
   data-email-form
   data-success={successMessage}
+  data-invalid={invalidEmail}
   data-survey-url={siteConfig.capture.surveyUrl}
 >
   <input type="hidden" name="embed" value="1" />
-  <label for={`${id}-email`} class="sr-only">Tu correo</label>
+  <label for={`${id}-email`} class="sr-only">{emailLabel}</label>
   <input
     id={`${id}-email`}
     type="email"
     name="email"
     required
     autocomplete="email"
-    placeholder="tucorreo@ejemplo.com"
+    placeholder={emailPlaceholder}
     class="w-full flex-1 rounded-xl border-border bg-muted/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 transition-all border outline-none focus:ring-4"
   />
   <Button type="submit" size="lg" class="w-full shrink-0 sm:w-auto">
@@ -61,6 +71,7 @@ const {
     ) as HTMLButtonElement | null;
 
     const successMessage = form.dataset.success ?? "";
+    const invalidMessage = form.dataset.invalid ?? "Invalid email.";
     const surveyUrl = form.dataset.surveyUrl ?? "";
 
     button?.addEventListener("click", () => {
@@ -74,7 +85,7 @@ const {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         event.preventDefault();
         status?.classList.remove("sr-only");
-        if (status) status.textContent = "Ingresa un correo válido.";
+        if (status) status.textContent = invalidMessage;
         return;
       }
 
@@ -88,7 +99,7 @@ const {
         const target = `${surveyUrl}${separator}email=${encodeURIComponent(email)}`;
         window.setTimeout(() => {
           window.location.assign(target);
-        }, 2500);
+        }, 1000);
       }
     });
   });
