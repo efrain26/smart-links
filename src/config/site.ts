@@ -8,6 +8,9 @@ export const siteConfig = {
   capture: {
     endpoint:
       "https://buttondown.com/api/emails/embed-subscribe/enlaceinteligente",
-    surveyUrl: "https://tally.so/r/WO6lpJ",
+    surveyUrl: {
+      es: "https://tally.so/r/WO6lpJ",
+      en: "https://tally.so/r/9qYp2p",
+    },
   },
 } as const;
