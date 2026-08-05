@@ -1,35 +1,22 @@
-import ogImage from "@/assets/og-image.png";
-
 export const siteConfig = {
-  name: "Astro Starter Pro",
+  name: "Enlace Inteligente",
   description:
-    "Starter template optimized for SEO and performance. A solid foundation to start your projects with best practices.",
-  url: "https://astrostarterpro.com",
-  lang: "en",
-  locale: "en_US",
-  author: "Devgelo",
-  twitter: "@Devgelo",
-  ogImage: ogImage,
-  socialLinks: {
-    twitter: "https://twitter.com",
-    github: "https://github.com/devgelo-labs/astro-starter-pro",
-    discord: "https://discord.com",
+    "Crea un enlace que abre tu app en iPhone o Android según el dispositivo del visitante. Sin SDK, listo en minutos.",
+  url: "https://smart-links.vercel.app",
+  lang: "es",
+  locale: "es_MX",
+  author: "Enlace Inteligente",
+  ogImage: "/favicon.svg",
+  headline: "Un solo enlace para abrir tu app en",
+  headlineHighlight: "iOS y Android",
+  headlineAlt: "Abre tu app desde cualquier link, en cualquier dispositivo.",
+  subheadline:
+    "Cada enlace detecta el dispositivo de tu visitante — iPhone, Android o desktop — y lo manda a la app correcta o a su tienda. Sin SDK, listo en minutos.",
+  cta: "Quiero mi enlace",
+  ctaFinal: "Notifícame cuando salga",
+  capture: {
+    endpoint: "https://buttondown.com/api/emails/embed-subscribe/TU_USUARIO",
+    successMessage: "¡Listo! Revisa tu correo.",
+    surveyUrl: "",
   },
-  navLinks: [
-    { text: "Home", href: "/" },
-    { text: "About", href: "/about" },
-    { text: "Services", href: "/services" },
-    { text: "Pricing", href: "/pricing" },
-    { text: "Blog", href: "/blog" },
-    { text: "Contact", href: "/contact" },
-    { text: "Widgets", href: "/widgets" },
-    {
-      text: "Templates",
-      href: "/templates",
-      links: [
-        { text: "Personal Portfolio", href: "/templates/portfolio" },
-        { text: "SaaS Landing", href: "/templates/saas" },
-      ],
-    },
-  ],
-};
+} as const;

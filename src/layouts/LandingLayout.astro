@@ -1,0 +1,27 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+import Seo from "@/components/seo/Seo.astro";
+import "@/styles/global.css";
+import Analytics from "@vercel/analytics/astro";
+
+const { title, description, canonical } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="light" class="scroll-smooth">
+  <head>
+    <Seo {title} {description} {canonical} />
+    <slot name="head" />
+  </head>
+  <body class="bg-background text-foreground antialiased">
+    <main id="main-content" class="relative z-10">
+      <slot />
+    </main>
+    <Analytics />
+  </body>
+</html>
