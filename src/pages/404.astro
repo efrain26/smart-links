@@ -1,7 +1,8 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 import LandingLayout from "@/layouts/LandingLayout.astro";
 import Button from "@/components/ui/Button.astro";
-import { useTranslations } from "@/i18n/ui";
+import { defaultLocale, useTranslations } from "@/i18n/ui";
 
 const t = useTranslations(Astro.currentLocale);
 ---
@@ -17,7 +18,12 @@ const t = useTranslations(Astro.currentLocale);
     <p class="mt-4 max-w-md text-muted-foreground">
       {t.notFound.body}
     </p>
-    <Button href="/" variant="primary" size="lg" class="mt-8">
+    <Button
+      href={getRelativeLocaleUrl(defaultLocale)}
+      variant="primary"
+      size="lg"
+      class="mt-8"
+    >
       {t.notFound.back}
     </Button>
   </section>

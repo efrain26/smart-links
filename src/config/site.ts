@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Enlace Inteligente",
-  url: "https://smart-links.vercel.app",
+  url: "https://efrain26.github.io/smart-links/",
   lang: "es",
   locale: "es_MX",
   author: "Enlace Inteligente",
-  ogImage: "/favicon.svg",
+  ogImage: "favicon.svg",
   capture: {
     endpoint:
       "https://buttondown.com/api/emails/embed-subscribe/enlaceinteligente",

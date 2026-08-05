@@ -6,7 +6,8 @@ import icon from "astro-icon";
 import remarkReadingTime from "remark-reading-time";
 
 export default defineConfig({
-  site: "https://smart-links.vercel.app/",
+  site: "https://efrain26.github.io",
+  base: "/smart-links/",
   integrations: [sitemap(), icon(), mdx()],
   markdown: {
     remarkPlugins: [

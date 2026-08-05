@@ -19,7 +19,10 @@ const t = useTranslations(currentLocale);
   class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur"
 >
   <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-    <a href="/" class="text-lg font-bold tracking-tight">
+    <a
+      href={getRelativeLocaleUrl(defaultLocale)}
+      class="text-lg font-bold tracking-tight"
+    >
       {siteConfig.name}
     </a>
     <div class="flex items-center gap-3">
