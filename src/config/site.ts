@@ -15,8 +15,9 @@ export const siteConfig = {
   cta: "Quiero mi enlace",
   ctaFinal: "Notifícame cuando salga",
   capture: {
-    endpoint: "https://buttondown.com/api/emails/embed-subscribe/TU_USUARIO",
+    endpoint:
+      "https://buttondown.com/api/emails/embed-subscribe/enlaceinteligente",
     successMessage: "¡Listo! Revisa tu correo.",
-    surveyUrl: "",
+    surveyUrl: "https://tally.so/r/WO6lpJ",
   },
 } as const;
