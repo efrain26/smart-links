@@ -56,8 +56,6 @@ const {
 <p id={`${id}-status`} class="sr-only" role="status" aria-live="polite"></p>
 
 <script>
-  import { track } from "@vercel/analytics";
-
   const forms = document.querySelectorAll<HTMLFormElement>(
     "form[data-email-form]",
   );
@@ -67,17 +65,10 @@ const {
     const status = document.getElementById(
       `${id}-status`,
     ) as HTMLParagraphElement | null;
-    const button = form.querySelector(
-      "button[type=submit]",
-    ) as HTMLButtonElement | null;
 
     const successMessage = form.dataset.success ?? "";
     const invalidMessage = form.dataset.invalid ?? "Invalid email.";
     const surveyUrl = form.dataset.surveyUrl ?? "";
-
-    button?.addEventListener("click", () => {
-      track("cta_click", { form: id });
-    });
 
     form.addEventListener("submit", (event) => {
       const input = form.querySelector<HTMLInputElement>('input[name="email"]');
@@ -89,8 +80,6 @@ const {
         if (status) status.textContent = invalidMessage;
         return;
       }
-
-      track("form_submit", { form: id });
 
       status?.classList.remove("sr-only");
       if (status) status.textContent = successMessage;

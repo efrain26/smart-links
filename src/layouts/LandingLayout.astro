@@ -7,7 +7,6 @@ interface Props {
 
 import Seo from "@/components/seo/Seo.astro";
 import "@/styles/global.css";
-import Analytics from "@vercel/analytics/astro";
 import { useTranslations } from "@/i18n/ui";
 
 const { title, description, canonical } = Astro.props;
@@ -19,11 +18,15 @@ const t = useTranslations(Astro.currentLocale);
   <head>
     <Seo {title} {description} {canonical} />
     <slot name="head" />
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "ec6e771bb846424fb35659537038fbfe"}'
+      is:inline></script>
   </head>
   <body class="bg-background text-foreground antialiased">
     <main id="main-content" class="relative z-10">
       <slot />
     </main>
-    <Analytics />
   </body>
 </html>
